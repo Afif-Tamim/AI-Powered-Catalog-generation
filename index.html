@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AI Catalog — Product Data Aggregation (Frontend)</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">AI Catalog</h1>
+            <nav class="nav">
+                <a href="lookup.html">Create Catalog Entry</a>
+                <a href="results.html">View Last Result</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Automate your product catalog with AI</h2>
+                    <p>Upload an image, enter a barcode/UPC, or paste a product link — the system aggregates metadata
+                        and generates merchant-ready descriptions.</p>
+                    <a class="cta" href="lookup.html">Get started — Create entry</a>
+                </div>
+                <div class="hero-card">
+                    <h3 style="margin:0 0 8px">Quick demo</h3>
+                    <p style="margin:0 0 12px;color:#64748b">Visit the Create page to try UPC lookup or image upload.</p>
+                    <div style="display:flex;gap:8px">
+                        <a class="cta" href="lookup.html" style="background:#0b1220">Create</a>
+                        <a class="cta" href="results.html" style="background:#e6eef6;color:#0b1220">Last result</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how" class="container how">
+            <h3>How it works</h3>
+            <div class="steps">
+                <div class="step">1. Input UPC, barcode, or upload an image</div>
+                <div class="step">2. System aggregates metadata from product databases</div>
+                <div class="step">3. AI rewrites descriptions in your tone & prepares images/categories</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">© 2026 AI Catalog — Frontend demo</div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
