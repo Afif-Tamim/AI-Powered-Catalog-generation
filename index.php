@@ -1,3 +1,32 @@
+<?php
+session_start(); // For login sessions
+include 'database.php'; // Links to database.php
+
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = $_POST['password'];
+    
+    // Query database
+    $query = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $query);
+    
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Verify password
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['name'] = $row['first_name'] . ' ' . $row['last_name'];
+            // Login successful - JavaScript will handle UI
+        } else {
+            $error = "Invalid password";
+        }
+    } else {
+        $error = "User not found";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
