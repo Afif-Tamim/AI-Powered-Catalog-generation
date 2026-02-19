@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['name'] = $row['first_name'] . ' ' . $row['last_name'];
+            $_SESSION['role'] = $row['role'];
+            $_SESSION['logged_in'] = true;
             // Login successful - JavaScript will handle UI
         } else {
             $error = "Invalid password";
@@ -69,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
                     </div>
                 </div>
 
-                <form id="login-form" class="login-form">
+                <form id="login-form" class="login-form" method="POST">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="you@company.com" required>
@@ -86,6 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
                         </svg>
                     </button>
                 </form>
+
+                <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #475569;">
+                    <p style="color: #94A3B8; font-size: 14px; margin: 0;">
+                        Don't have an account?
+                        <a href="signup.php" style="color: #3B82F6; text-decoration: none; font-weight: 600;">Sign
+                            Up</a>
+                    </p>
+                </div>
 
                 <div class="login-features">
                     <div class="feature-item">
@@ -205,7 +215,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
                             <div class="ai-pulse"></div>
                             <span>5 sources active</span>
                         </div>
-                        <span class="badge badge-primary">Admin</span>
+                        <span
+                            class="badge badge-primary"><?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'User'; ?></span>
                     </div>
                 </div>
             </div>
@@ -218,6 +229,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     </div>
 
     <script src="app.js"></script>
+    <script>
+        // If PHP logged in successfully, hide login and show app
+        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-app').style.display = 'flex';
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>
